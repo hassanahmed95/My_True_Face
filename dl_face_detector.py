@@ -4,9 +4,10 @@ from matplotlib.patches import Rectangle
 from matplotlib.patches import Circle
 from mtcnn.mtcnn import MTCNN
 import cv2
-
 # draw an image with detected objects
-def draw_image_with_boxes(filename, result_list):
+
+
+def draw_image_with_boxes(filename , result_list):
     # load the image
     data = pyplot.imread(filename)
     # plot the image

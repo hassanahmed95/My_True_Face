@@ -48,20 +48,24 @@ def get_data(data_path= Data_Source, class_labels=("Bore_faces","Happy_faces","N
             detector = MTCNN()
             faces = detector.detect_faces(image)
             cropped_face = draw_image_with_boxes(filename, faces)
-            cropped_face_path = "/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Cropped_faces/"
-            cv2.cvtColor(cropped_face_path)
-            cv2.imshow("data", cropped_face)
-            cv2.waitKey()
+            if not cropped_face.any():
+                continue
 
-            cv2.imwrite(cropped_face_path + directory + str(count) + ".jpg", cropped_face)
+            face = cv2.cvtColor(cropped_face, cv2.COLOR_RGB2BGR)
+            # face = cv2.resize(cropped_face, (224,224))
+            # cv2.imshow("data", face)
+            # cv2.waitKey()
+
+            cropped_face_path = "/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Cropped_faces/"
+            cv2.imwrite(cropped_face_path + directory.split("_")[0] + str(count) + ".jpg",face)
             # cv2.imshow("my_face", cropped_face)
             print("DONE . .")
-            exit()
+            # exit()
             # cv2.waitKey()
 
         os.chdir("..")
         print(os.getcwd())
-        # exit()
+        exit()
     print("Total number of the images are" + str(count))
 
 

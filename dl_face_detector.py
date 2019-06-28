@@ -7,7 +7,7 @@ import cv2
 # draw an image with detected objects
 
 
-def draw_image_with_boxes(filename ,result_list):
+def draw_image_with_boxes(filename, result_list):
     # load the image
     data = pyplot.imread(filename)
     # plot the image
@@ -49,7 +49,7 @@ def draw_image_with_boxes(filename ,result_list):
     pyplot.show()
 
 
-filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset/Bore_faces/image0000490.jpg'
+filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Cropped_faces/Bore_faces11.jpg'
 # load image from file
 pixels = pyplot.imread(filename)
 # create the detector, using default weights

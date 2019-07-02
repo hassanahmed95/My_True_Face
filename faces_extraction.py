@@ -34,7 +34,7 @@ def get_data(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","
         os.chdir(directory)
         count = 0
         print(directory)
-        # exit()
+
         for filename in os.listdir('.'):
             count += 1
             image_path = os.getcwd() + "/"+filename

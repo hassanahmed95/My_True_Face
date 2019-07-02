@@ -9,9 +9,9 @@ import numpy as np
 Data_Source = "Expressions_Dataset"
 
 
-def get_data (data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","Neutral_faces", "Surprize_faces")):
-    data  = []
-    labels =[]
+def get_data(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","Neutral_faces", "Surprize_faces")):
+    data = []
+    labels = []
     names = []
 
     os.chdir(data_path)
@@ -21,7 +21,6 @@ def get_data (data_path = Data_Source, class_labels=("Bore_faces","Happy_faces",
 
         for filename in os.listdir('.'):
             print(filename)
-
             filepath = os.getcwd() + '/' + filename
 
             # feature_vector = get_feature_vector_from_mfcc(file_path=filepath,mfcc_len=mfcc_len)

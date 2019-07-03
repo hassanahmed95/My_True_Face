@@ -5,7 +5,10 @@ from os import makedirs
 from random import seed
 import os
 from shutil import copyfile,copy2
+import math
+# import random
 from random import random
+
 
 Data_Source = "Cropped_faces/"
 # the method for making relevant directories . . .
@@ -22,61 +25,34 @@ def makedir():
 
 
 def data_copying(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","Neutral_faces", "Surprise_faces")):
-    seed(1)
-    val_ratio = 0.25
+    print("Data copying has been started. . .")
     os.chdir(data_path)
     for i, directory in enumerate(class_labels):
         os.chdir(directory)
-
-        for file_name in os.listdir("."):
+        data = os.listdir('.')
+        count = 0
+        for file_name in data:
             src_file = os.getcwd() + "/" + file_name
-            # print(src_file)
-            dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset_Home/train/' + directory +'/'+ file_name
-            # print(random())
+            # print(file_name)
+            # exit()
+            if count < math.ceil((len(data)) * 0.25):
 
-            if random() < val_ratio:
                 dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset_Home/test/' + directory +'/'+ file_name
+                # print("Pointer in the test directory. . .")
+
+            else:
+                dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset_Home/train/' + directory + '/' + file_name
 
             copy2(src_file, dst_dir)
-            # exit()
+            # print(dst_dir)
+            count +=1
 
+        # exit()
         os.chdir("..")
-        os.getcwd()
+        # os.getcwd()
 
 
 if __name__ == '__main__':
     # makedir()
     data_copying()
     print("DONE")
-
-
-
-
-
-#
-#
-#
-# def get_data(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","Neutral_faces", "Surprize_faces")):
-#
-#     data   =  []
-#     labels =  []
-#     names  =  []
-#
-#     os.chdir(data_path)
-#     for i, directory in enumerate(class_labels):
-#         os.chdir(directory)
-#         print(directory)
-#
-#         for filename in os.listdir('.'):
-#             print(filename)
-#             filepath = os.getcwd() + '/' + filename
-#
-#             # feature_vector = get_feature_vector_from_mfcc(file_path=filepath,mfcc_len=mfcc_len)
-#             feature_vector = "data, extracted from the image fodlers. . . "
-#
-#             data.append(feature_vector)
-#             labels.append(i)
-#             names.append(filename)
-#         os.chdir("..")
-#
-#     return np.array(data), np.array(labels)

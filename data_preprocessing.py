@@ -1,29 +1,24 @@
-#in that file data shuffling , train and test data merging has been implemented
-#cos, the data generator is expecting to have train and test 2 directories
-import numpy as np
 from os import makedirs
-from random import seed
 import os
-from shutil import copyfile,copy2
+from shutil import copy2
 import math
-# import random
-from random import random
 
 
 Data_Source = "Cropped_faces/"
-# the method for making relevant directories . . .
 
 
+# method to make tain, test and their sub- directories. . .
 def makedir():
     data_home = "Expressions_Dataset_Home/"
     sub_dirs = ["train/", "test/"]
     for sub_dir in sub_dirs:
-        label_dirs = ["Bore_faces","Happy_faces","Neutral_faces", "Surprise_faces"]
+        label_dirs = ["Bore_faces", "Happy_faces", "Neutral_faces", "Surprise_faces"]
         for label_dir in label_dirs:
             new_dir = data_home + sub_dir + label_dir
             makedirs(new_dir, exist_ok=True)
 
 
+# method to copy data to relevent sub directories in specific portion. .  .
 def data_copying(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","Neutral_faces", "Surprise_faces")):
     print("Data copying has been started. . .")
     os.chdir(data_path)
@@ -45,8 +40,7 @@ def data_copying(data_path = Data_Source, class_labels=("Bore_faces","Happy_face
 
             copy2(src_file, dst_dir)
             # print(dst_dir)
-            count +=1
-
+            count += 1
         # exit()
         os.chdir("..")
         # os.getcwd()

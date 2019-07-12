@@ -3,7 +3,6 @@ import os
 from shutil import copy2
 import math
 
-
 Data_Source = "Cropped_faces/"
 
 
@@ -37,7 +36,6 @@ def data_copying(data_path = Data_Source, class_labels=("Bore_faces","Happy_face
 
             else:
                 dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset_Home/train/' + directory + '/' + file_name
-
             copy2(src_file, dst_dir)
             # print(dst_dir)
             count += 1

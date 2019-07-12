@@ -3,7 +3,6 @@ from mtcnn.mtcnn import MTCNN
 import cv2
 from matplotlib import pyplot
 
-
 Data_Source = "Expressions_Dataset"
 
 # images_paths = []

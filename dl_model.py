@@ -1,7 +1,6 @@
 #in that file the complete CNN model for the data classification has
 #been implemented . . . . .
 
-from matplotlib.pyplot import plot
 from matplotlib import pyplot
 from keras.models import Sequential
 from keras.layers import Conv2D

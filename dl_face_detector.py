@@ -7,7 +7,7 @@ import cv2
 # draw an image with detected objects
 
 
-def draw_image_with_boxes(filename, result_list):
+def draw_image_with_boxes(filename,result_list):
     # load the image
     data = pyplot.imread(filename)
     # plot the image
@@ -15,13 +15,12 @@ def draw_image_with_boxes(filename, result_list):
     # get the context for drawing boxes
     ax = pyplot.gca()
     count = 1
-
     # plot each box
     for result in result_list:
         # get coordinates
         x, y, width, height = result['box']
 
-        cropped_face = data[y: y+height ,  x: x+width]
+        cropped_face = data[y: y+height,  x: x+width]
         cropped_face = cv2.resize(cropped_face, (224,224))
         # cropped_face =cv2.cvtColor(cropped_face,cv2.COLOR_RGB2GRAY)
         #
@@ -49,7 +48,7 @@ def draw_image_with_boxes(filename, result_list):
     pyplot.show()
 
 
-filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Cropped_faces/Bore_faces11.jpg'
+filename = 'faces.jpg'
 # load image from file
 pixels = pyplot.imread(filename)
 # create the detector, using default weights

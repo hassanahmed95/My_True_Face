@@ -1,7 +1,11 @@
 venv
 .idea
 faces.jpg
-Expressions_Dataset
+Expressions_Dataset(original)
 Cropped_faces
-Expressions_Dataset_Home
+Expressions_Dataset_Sorted(train, test)
+Final_Prepared_Data
+testing.py
+testing
+
 

@@ -33,7 +33,6 @@ def get_data(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","
         os.chdir(directory)
         count = 0
         print(directory)
-
         for filename in os.listdir('.'):
             count += 1
             image_path = os.getcwd() + "/"+filename
@@ -42,22 +41,17 @@ def get_data(data_path = Data_Source, class_labels=("Bore_faces","Happy_faces","
             detector = MTCNN()
             faces = detector.detect_faces(image)
             cropped_face = draw_image_with_boxes(filename, faces)
-
             if cropped_face is None:
                 continue
             if cropped_face.size == 0:
                 # print("I have been stucked in the loop . . .")
                 continue
-
             face = cv2.cvtColor(cropped_face, cv2.COLOR_RGB2BGR)
-
             cropped_face_path = "/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Cropped_faces/" +directory+"/"
             cv2.imwrite(cropped_face_path + directory.split("_")[0] + str(count) + ".jpg",face)
             #  cv2.imshow("my_face", cropped_face)
             print("DONE . .")
-
         os.chdir("..")
-
         # exit()
     print("Total number of the images are" + str(count))
 

@@ -67,6 +67,7 @@ def final_data_prepartion(source_path =data_path,class_labels=("Bore_faces","Hap
             print(dst_dir)
             cv2.imwrite(dst_dir, grey_scale)
             # exit()
+        # that line will make pointer to return back to parent dirctory
         os.chdir("..")
 
 

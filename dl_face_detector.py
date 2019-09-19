@@ -21,11 +21,11 @@ def draw_image_with_boxes(filename,result_list):
         x, y, width, height = result['box']
 
         cropped_face = data[y: y+height,  x: x+width]
-        cropped_face = cv2.resize(cropped_face, (224,224))
-        # cropped_face =cv2.cvtColor(cropped_face,cv2.COLOR_RGB2GRAY)
-        #
-        # cv2.imshow("dfs",cropped_face)
-        # cv2.waitKey()
+        # cropped_face = cv2.resize(cropped_face, (48,48))
+        cropped_face =cv2.cvtColor(cropped_face,cv2.COLOR_RGB2GRAY)
+
+        cv2.imshow("dfs",cropped_face)
+        cv2.waitKey()
         # exit()
         # cv2.imwrite("cropped_face/" + str(count) + ".jpg", cropped_face)
         # count += 1
@@ -45,10 +45,10 @@ def draw_image_with_boxes(filename,result_list):
             ax.add_patch(dot)
     # show the plot
 
-    pyplot.show()
+    # pyplot.show()
 
 
-filename = 'faces.jpg'
+filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset(original)/Bore_faces/image0040979.jpg'
 # load image from file
 pixels = pyplot.imread(filename)
 # create the detector, using default weights

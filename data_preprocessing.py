@@ -8,8 +8,9 @@ Data_Source = "Cropped_faces/"
 
 # method to make tain, test and their sub- directories. . .
 
+
 def makedir():
-    data_home = "Expressions_Dataset_Home/"
+    data_home = "Updated_Data/"
     sub_dirs = ["train/", "test/"]
     for sub_dir in sub_dirs:
         label_dirs = ["Bore_faces", "Happy_faces", "Neutral_faces", "Surprise_faces"]
@@ -45,7 +46,7 @@ def data_copying(data_path = Data_Source, class_labels=("Bore_faces","Happy_face
 # data resizng should be performed in above method, but due to soritng and
 # and removal of old images new method has to be written
 
-data_path = "/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/My_data_testing_directory/test"
+data_path = "/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Final_Prepared_Data/Training"
 
 # That method is created to convert the images in grey scale and resizing them to specific size...
 
@@ -58,12 +59,14 @@ def final_data_prepartion(source_path =data_path,class_labels=("Bore_faces","Hap
         count = 0
         for file_name in data:
             src_file_image = os.getcwd() + "/" +file_name
+            # print(src_file_image)
+
             src_file_image = cv2.imread(src_file_image)
-            updated_image= cv2.resize(src_file_image,(250,250))
+            updated_image= cv2.resize(src_file_image,(90,90))
             grey_scale = cv2.cvtColor(updated_image,cv2.COLOR_RGB2GRAY)
             # cv2.imshow("sds", grey_scale)
             # cv2.waitKey()
-            dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/My_data_testing_directory/Output_test/'+ directory + '/' + file_name
+            dst_dir = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Updated_Data/train/'+ directory + '/' + file_name
             print(dst_dir)
             cv2.imwrite(dst_dir, grey_scale)
             # exit()

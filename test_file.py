@@ -1,12 +1,15 @@
 from mtcnn.mtcnn import MTCNN
 import cv2
+from matplotlib import pyplot
 import imutils
-filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset(original)/Happy_faces/image0000017.jpg'
+filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Data_Testing/Training/Bore_faces/Bore25.jpg'
 data = cv2.imread(filename)
-data = cv2.resize(data,(48,48))
-print(data.shape)
+# data =  pyplot.imread(filename)
+# data = cv2.resize(data,(90,90))
+
 # data = cv2.cvtColor(data,cv2.COLOR_RGB2GRAY)
 print(data.shape)
+# exit()
 detector = MTCNN()
 faces = detector.detect_faces(data)
 

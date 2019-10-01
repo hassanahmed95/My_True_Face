@@ -1,4 +1,4 @@
-from matplotlib import pyplot
+from matplotlib import pyplot as plt
 from keras.models import Sequential
 from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
@@ -52,26 +52,26 @@ def dl_model():
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=['accuracy'])
     return model
 
-
-def summarize_diagnostics(history):
-    # plot loss
-    pyplot.subplot(211)
-    pyplot.title("Cross Entropy loss . . .")
-    pyplot.plot(history.history['loss'], color='blue', label='train')
-    pyplot.plot(history.history['val_loss'], color='blue', label='test')
-
-    # plot accuracy
-    pyplot.subplot(212)
-    pyplot.title("Classification accuracy. . .")
-    pyplot.plot(history.history['acc'], color='blue', label='train')
-    pyplot.plot(history.history['val_acc'], color='orange', label='test')
-
-    # save plot to file
-    # filename = sys.argv[0].split('/')[-1]
-    filename = "Matplotlib_graph"
-    pyplot.savefig(filename + '_plot.png')
-    pyplot.close()
-
+#
+# def summarize_diagnostics(history):
+#     # plot loss
+#     pyplot.subplot(211)
+#     pyplot.title("Cross Entropy loss . . .")
+#     pyplot.plot(history.history['loss'], color='blue', label='train')
+#     pyplot.plot(history.history['val_loss'], color='blue', label='test')
+#
+#     # plot accuracy
+#     pyplot.subplot(212)
+#     pyplot.title("Classification accuracy. . .")
+#     pyplot.plot(history.history['acc'], color='blue', label='train')
+#     pyplot.plot(history.history['val_acc'], color='orange', label='test')
+#
+#     # save plot to file
+#     # filename = sys.argv[0].split('/')[-1]
+#     filename = "Matplotlib_graph"
+#     pyplot.savefig(filename + '_plot.png')
+#     pyplot.close()
+#
 
 def model_fitting():
     model = dl_model()
@@ -94,8 +94,21 @@ def model_fitting():
     checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
     callbacklist = [checkpoint]
 
+    model.load_weights("My_DL_Models/Accuracy- 0.59500-100epochs.hdf5")
+
     history = model.fit_generator(train_it, steps_per_epoch=len(train_it),
-                                validation_data = test_it, validation_steps=len(test_it), epochs= 30, verbose=1, callbacks = callbacklist)
+                                validation_data = test_it, validation_steps=len(test_it), epochs= 100, verbose=1, callbacks = callbacklist)
+
+    print("Here i am going beyond the training.  . .")
+    print(history.history.keys())
+
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'test'], loc='upper left')
+    plt.show()
 
     # _, acc = model.evaluate_generator(test_it, steps=len(test_it), verbose=1)
     # print('> %.3f' % (acc * 100.0))

@@ -48,7 +48,7 @@ def draw_image_with_boxes(filename,result_list):
     # pyplot.show()
 
 
-filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/Expressions_Dataset(original)/Bore_faces/image0040979.jpg'
+filename = '/home/hassan/Hassaan_Home/My_Python_Projects/My_true_face_update/faces.jpg'
 # load image from file
 pixels = pyplot.imread(filename)
 # create the detector, using default weights

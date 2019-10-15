@@ -25,7 +25,7 @@ def dl_model():
                      input_shape=(90, 90, 3)))
     model.add(MaxPooling2D((2, 2)))
     model.add(Dropout(0.2))
-
+    model.add((Activation(activation="relu")))
     model.add(Conv2D(64, (3, 3), activation='relu', kernel_initializer='he_uniform', padding='same'))
     model.add(MaxPooling2D((2, 2)))
     model.add(Dropout(0.2))

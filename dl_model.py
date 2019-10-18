@@ -13,9 +13,9 @@ from keras.regularizers import l1
 from keras.callbacks import EarlyStopping
 import numpy as np
 from keras.preprocessing.image import ImageDataGenerator
-# from test_file import hello
+
 # he_uniform is the method for weights initalization, if we use relu as our activation function
-# np.random.seed(1)
+np.random.seed(1)
 
 # kernel_regularizer = regularizers.l2(0.0001)
 

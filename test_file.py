@@ -4,21 +4,20 @@
 # from keras.preprocessing.image import img_to_array
 from keras.preprocessing.image import ImageDataGenerator
 from keras.models import load_model
-#
-# # img = loadd_image('Updated_Data/train/Surprise_faces/Surprise3.jpg')
-# # # load model
 
 import numpy as np
 from keras.preprocessing import image
 model = load_model('weights.best.hdf5')
-test_image = image.load_img('Updated_Data/test/Surprise_faces/Surprise1451.jpg', target_size=(90,90))
+test_image = image.load_img('Updated_Data/test/Bore_faces/Bore1593.jpg', target_size=(90,90))
 test_image = image.img_to_array(test_image)
 test_image = np.expand_dims(test_image,axis=0)
 result = model.predict(test_image)
-# training_set.class_indices
 print(result)
-# for i in result[0]:
-#     print(i)
+index_min = np.argmax(result[0])
+print(index_min)
+# for index, data in enumerate (result[0]):
+#     print(index, "", data)
+
 
 exit()
 

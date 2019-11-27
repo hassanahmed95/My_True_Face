@@ -83,9 +83,7 @@ def model_fitting():
     train_it = datagen.flow_from_directory("{base_path}/Data_Testing/Training".format(base_path=BASE_PATH),
         class_mode='categorical', batch_size=batch_size, target_size=(90, 90))
 
-    testing =  train_it.classes
-    print(testing)
-    exit()
+
 
     test_it = datagen.flow_from_directory( "{base_path}/Data_Testing/Testing".format(base_path=BASE_PATH),
         class_mode='categorical', batch_size=batch_size, target_size=(90, 90))
@@ -95,7 +93,7 @@ def model_fitting():
                                   validation_data=test_it, validation_steps=len(test_it), epochs=epochs, verbose=1,
                                   callbacks=callbacks_list)
     # pdb.set_trace()
-    # saving the model in json format .
+    # saving    the model in json format .
     model_json = model.to_json()
     with open("model.json", "w") as json_file:
         json_file.write(model_json)

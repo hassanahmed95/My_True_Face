@@ -22,9 +22,9 @@ def draw_image_with_boxes():
 
 def get_faces():
     # YHAAAN PE TM APNAA KOI IMAGE PASS KR DO, JIS ME FACE DETECTION KRNI HA
-    filename = 'face.jpg'
+    filename = 'faces.jpg'
     image = cv2.imread(filename)
-    image= imutils.resize(image,width=500)
+    image= imutils.resize(image,width=900)
     detector = MTCNN()
     faces = detector.detect_faces(image)
     print(type(faces))

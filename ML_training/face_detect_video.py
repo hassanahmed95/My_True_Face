@@ -8,10 +8,8 @@ while True:
     # Capture frame-by-frame
     ret, frame = video_capture.read()
     # frame = cv2.resize(frame,(500,500))
-
     frame = imutils.resize(frame, width=600)
     print(frame.shape)
-
     # here I will get coordinates of all faces detected in the frame
     faces = detector.detect_faces(frame)
     for face in faces:

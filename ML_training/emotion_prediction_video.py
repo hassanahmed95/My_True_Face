@@ -1,9 +1,9 @@
 from mtcnn.mtcnn import MTCNN
 import imutils
-from keras.models import model_from_json
-from keras.preprocessing import image
 import cv2
+from keras.models import model_from_json
 import numpy as np
+
 
 model_architecture= "models/model.json"
 model_weights = "models/_mini_XCEPTION.57-0.75.hdf5"
@@ -18,42 +18,32 @@ def emotion_predictor(model_json_file = model_architecture , model_weights_file=
 
 
 def video_processing():
-    video_capture = cv2.VideoCapture(0)
+    cap = cv2.VideoCapture(0)
+    cap.set(cv2.CAP_PROP_POS_MSEC, 2)
     detector = MTCNN()
     model = emotion_predictor()
     emotion_list = ["BORE", "HAPPY", "NEUTRAL", "SURPRISE"]
     while True:
-        ret, frame = video_capture.read()
-        # frame = cv2.resize(frame,(500,500))
-        frame = imutils.resize(frame, width=700)
-        faces = detector.detect_faces(frame)
+        ret, frame = cap.read()
+        if ret:
+            frame = imutils.resize(frame, width=500)
+            faces = detector.detect_faces(frame)
+            for face in faces:
+                x, y, width, height = face['box']
 
-        for face in faces:
-            x, y, width, height = face['box']
-            cropped_face = frame[y-20: y+height + 20,  x : x+width+10]
-            cv2.rectangle(frame, (x,y), (x+width,  y+ height),(0,255,0),2)
-            cropped_face=cv2.resize(cropped_face, (90, 90))
-            # dst = cv2.fastNlMeansDenoisingColored(cropped_face, None, 4, 4, 2, 5)
-            dst = np.expand_dims(cropped_face, axis=0)
-            # here I am performing the emotions prediction model
-            prediction = emotion_list[(int(np.argmax(model.predict(dst))))]
-            print(prediction)
-            cv2.putText(frame, prediction, (10, 30),
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 2)
+                cropped_face = frame[y - 20: y + height + 20, x: x + width + 10]
+                cropped_face = cv2.resize(cropped_face, (90, 90))
+                dst = np.expand_dims(cropped_face, axis=0)
+                cv2.rectangle(frame, (x, y), (x + width+20, y + height+20), (0, 255, 0), 2)
 
-            # I am performing the drowsiness detection filter.  . .
-
-
-            # cv2.imwrite("test.jpg",dst)
-            # cv2.imshow("face", dst)
-            # cv2.waitKey()
-
-        cv2.imshow("detections", frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+                prediction = emotion_list[(int(np.argmax(model.predict(dst))))]
+                print(prediction)
+            cv2.imshow("detections", frame)
+            if cv2.waitKey(10) & 0xFF == ord('q'):
+                break
+        else:
             break
-
-    # When everything is done, release the capture
-    video_capture.release()
+    cap.release()
     cv2.destroyAllWindows()
 
 

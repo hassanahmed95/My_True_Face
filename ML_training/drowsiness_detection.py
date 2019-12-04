@@ -22,7 +22,7 @@ def eye_aspect_ratio(eye):
 
 def drowsiness():
     EYE_AR_THRESH = 0.3
-    EYE_AR_CONSEC_FRAMES = 50
+    EYE_AR_CONSEC_FRAMES = 70
     COUNTER = 0
     detector = MTCNN()
     predictor = dlib.shape_predictor("Face_detection_model/shape_predictor_68_face_landmarks.dat")
@@ -33,8 +33,9 @@ def drowsiness():
     video_capture = cv2.VideoCapture(0)
     while True:
         ret, frame = video_capture.read()
-        frame = imutils.resize(frame, width=250)
+        # frame = imutils.resize(frame, width=600)
         # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
         rects = detector.detect_faces(frame)
         for rect in rects:
             x, y, width, height= rect['box']

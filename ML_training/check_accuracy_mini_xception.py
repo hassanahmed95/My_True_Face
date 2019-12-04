@@ -19,7 +19,6 @@ def model_testing(model_json_file, model_weights_file):
 if __name__ == '__main__':
     base_path = os.path.dirname(__file__)
 
-
     json_file = "{base_path}/models/model.json".format(base_path=base_path)
     weights_file = "{base_path}/models/_mini_XCEPTION.57-0.75.hdf5".format(base_path= base_path)
 

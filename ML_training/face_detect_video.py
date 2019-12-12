@@ -3,16 +3,17 @@ import imutils
 import cv2
 
 video_capture = cv2.VideoCapture(0)
-detector = MTCNN()
+detector = MTCNN(scale_factor=0.509,min_face_size=15)
 while True:
     # Capture frame-by-frame
     ret, frame = video_capture.read()
     # frame = cv2.resize(frame,(500,500))
     frame = imutils.resize(frame, width=600)
-    print(frame.shape)
+    # print(frame.shape)
     # here I will get coordinates of all faces detected in the frame
     faces = detector.detect_faces(frame)
     for face in faces:
+        print(face['confidence'])
         x, y, width, height = face['box']
         cropped_face = frame[y: y+height,  x: x+width]
         cv2.rectangle(frame, (x,y), (x+width,  y+ height),(0,255,0),2)

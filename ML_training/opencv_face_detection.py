@@ -1,6 +1,7 @@
 import numpy as np
 import imutils
 import cv2
+import cvlib
 
 # construct the argument parse and parse the arguments
 prototxt = "./Face_detection_model/deploy.prototxt.txt"
@@ -31,7 +32,15 @@ while True:
         cv2.rectangle(frame, (startX, startY), (endX, endY),
                       (0, 0, 255), 2)
         cropped_face = frame[startY:endY, startX:endX]
-        cv2.imshow("sds",cropped_face)
+        # cv2.imshow("sds",cropped_face)
+        # cv2.imshow("sdsw", cropped_face)
+        (label, confidence) = cvlib.detect_gender(cropped_face)
+        print(confidence)
+        idx = np.argmax(confidence)
+        label = label[idx]
+        cv2.putText(frame, label.upper(), (150,150), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                    (0, 0,255), 2)
+        # print(label)
 
     cv2.imshow("Frame", frame)
     key = cv2.waitKey(1) & 0xFF

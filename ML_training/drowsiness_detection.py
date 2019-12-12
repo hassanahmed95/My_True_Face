@@ -21,8 +21,8 @@ def eye_aspect_ratio(eye):
 
 
 def drowsiness():
-    EYE_AR_THRESH = 0.3
-    EYE_AR_CONSEC_FRAMES = 70
+    EYE_AR_THRESH = 0.34
+    EYE_AR_CONSEC_FRAMES = 80
     COUNTER = 0
     detector = MTCNN()
     predictor = dlib.shape_predictor("Face_detection_model/shape_predictor_68_face_landmarks.dat")

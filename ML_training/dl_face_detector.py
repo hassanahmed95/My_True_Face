@@ -1,7 +1,7 @@
 from mtcnn.mtcnn import MTCNN
 import imutils
 import cv2
-import  numpy as np
+import numpy as np
 from keras.models import model_from_json
 
 model_architecture= "Expressions_models/model.json"
@@ -54,9 +54,10 @@ def draw_image_with_boxes():
         else:
             prediction = "Su"
         # print(prediction)
+
         # exit()cropped_face = cv2.resize(cropped_face, (90, 90))
-        # cv2.putText(image, prediction, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1,
-        #             (0, 0, 255), 1, cv2.LINE_AA, False)
+        cv2.putText(image, prediction, (x,y), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                    (0, 0, 255), 1, cv2.LINE_AA, False)
 
         # cv2.imshow(" ", image)
         # # cv2.waitKey()
@@ -64,11 +65,15 @@ def draw_image_with_boxes():
     cv2.imshow("detections", image)
     cv2.waitKey()
 
+
 def get_faces():
     filename = "faces.jpg"
     image = cv2.imread(filename)
     # image= imutils.resize(image,width=800)
     image = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
+    cv2.imshow("", image)
+    cv2.waitKey()
+    cv2.destroyAllWindows()
     detector = MTCNN(min_face_size=9,scale_factor=0.909,steps_threshold=([0.6,0.8,0.92]))
     faces = detector.detect_faces(image)
     print(type(faces))

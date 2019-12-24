@@ -3,8 +3,6 @@ import cv2
 from keras.models import model_from_json
 import numpy as np
 from collections import Counter
-
-
 model_architecture = "Expressions_models/model.json"
 model_weights = "Expressions_models/_mini_XCEPTION.57-0.75.hdf5"
 
@@ -52,18 +50,18 @@ def video_processing():
                     prediction = emotion_list[(int(np.argmax(model.predict(dst))))]
 
                     track_lsit.append(prediction)
+                    print(len(track_lsit))
 
-                    # if len(track_lsit) > 10:
-                    #     prediction = Counter(track_lsit)
-                    #     prediction = prediction.most_common(1)[0][0]
-                    #     print(prediction)
-                    #
-                    #     track_lsit.clear()
+                    if len(track_lsit) > 10:
+                        rep_prediction = Counter(track_lsit)
+                        rep_prediction = rep_prediction.most_common(1)[0][0]
+                        track_lsit.clear()
+                        track_lsit.append(rep_prediction)
 
-                    cv2.putText(frame, prediction, (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                                (0, 0, 255), 2, cv2.LINE_AA, False)
-                    cv2.imshow("detections", frame)
-
+                    print(track_lsit[0])
+                    cv2.putText(frame, track_lsit[0], (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                                        (0, 0, 255), 2, cv2.LINE_AA, False)
+                    # cv2.imshow("detections", frame)
 
             except:
                 continue
